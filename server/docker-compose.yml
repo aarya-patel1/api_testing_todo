@@ -1,0 +1,26 @@
+
+services:
+  server:
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - keploy-network
+
+  keploy:
+    image: ghcr.io/keploy/keploy:latest
+    depends_on:
+      - server
+    networks:
+      - keploy-network
+    environment:
+      - KEPLOY_MODE=record
+      - KEPLOY_APP_NAME=server
+      - KEPLOY_APP_HOST=server
+      - KEPLOY_APP_PORT=3000
+    volumes:
+      - ./keploy:/keploy
+
+networks:
+  keploy-network:
+    driver: bridge

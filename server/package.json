@@ -1,28 +1,30 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test npx jest --passWithNoTests",
-    "test:unit": "cross-env NODE_ENV=test npx jest tests/unit",
-    "test:integration": "cross-env NODE_ENV=test npx jest tests/integration",
-    "test:api": "cross-env NODE_ENV=test npx jest tests/api",
-    "test:coverage": "cross-env NODE_ENV=test npx nyc --reporter=text jest",
-    "start": "node app.js"
+    "test": "cross-env NODE_ENV=test jest --coverage --passWithNoTests",
+    "test:unit": "cross-env NODE_ENV=test jest tests/unit --coverage",
+    "test:integration": "cross-env NODE_ENV=test jest tests/integration --coverage",
+    "test:api": "cross-env NODE_ENV=test jest tests/api --coverage",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage --verbose",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "mysql2": "^3.14.1"
+    "mysql2": "^3.14.1",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "babel-jest": "^30.0.2",
     "cross-env": "^7.0.3",
     "jest": "^30.0.2",
+    "nodemon": "^3.0.0",
     "nyc": "^17.1.0",
     "sinon": "^21.0.0",
     "supertest": "^7.1.1"
